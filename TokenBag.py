@@ -11,7 +11,7 @@ class TokenBag:
         for qty in Qties:
             value += 1
             for i in range(qty):
-                self.tokens.append(value)
+                self.tokens.append(value-1)
 
         self.tokens.append('x')
         self.tokens.append('x')
