@@ -21,12 +21,13 @@ class Game:
         self.players[0].drawTokensFromTokenBag(self.tokenBag, 3)
         self.players[1].drawTokensFromTokenBag(self.tokenBag, 3)
         self.tokenBag.print()
-        board = Board()
-        board.printBoard()
+        self.board.printBoard()
 
     def start(self):
+
         return
 
 
 game = Game(2)
 game.initialise()
+game.start()
