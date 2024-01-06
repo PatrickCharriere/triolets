@@ -18,10 +18,10 @@ class Game:
     def initialise(self):
         print("Bienvenue pour une nouvelle partie de Triolets.")
         print("Ce jeu est configuré pour " + str(self.playersQty) + " joueurs, " + self.players[0].name + " et " + self.players[1].name + ".")
+        #self.tokenBag.print()
         self.players[0].drawTokensFromTokenBag(self.tokenBag, 3)
         self.players[1].drawTokensFromTokenBag(self.tokenBag, 3)
-        self.tokenBag.print()
-        self.board.printBoard()
+        self.board.print()
 
     def start(self):
 

@@ -91,7 +91,7 @@ class Board:
                 square = Square(coordinates)
                 self.board.append(square)
 
-    def printBoard(self):
+    def print(self):
         for y in range(rowsNumber):
             print()
             for x in range(rowsNumber):
