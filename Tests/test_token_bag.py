@@ -4,6 +4,7 @@ from TokenBag import TokenBag
 
 class Test(TestCase):
     def test_default_token_bag(self):
+        print(self._testMethodName)
         tokenBag = TokenBag()
         self.assertEqual(9, tokenBag.countTokens(0))
         self.assertEqual(9, tokenBag.countTokens(1))

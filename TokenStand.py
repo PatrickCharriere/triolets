@@ -1,5 +1,4 @@
 from array import *
-from Token import Token
 
 class TokenStand:
     _tokens = []
@@ -9,6 +8,6 @@ class TokenStand:
     
     def print(self):
         for token in self._tokens:
-            print('_', end='')
+            print(' ', end='')
             print(token.value, end='')
-        print('_')
+        print('')

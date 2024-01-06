@@ -91,11 +91,19 @@ class Board:
                 square = Square(coordinates)
                 self.board.append(square)
 
-    def print(self):
+    def print(self, *args):
+        overrideCursor = False
+        cursorCoordinates = Coordinates(0,0)
+        if len(args) != 0:
+            overrideCursor = True
+            cursorCoordinates = args[0]
         for y in range(rowsNumber):
             print()
             for x in range(rowsNumber):
-                print(self.board[((x * rowsNumber) + y)].textValue(), end = " ")
+                if(overrideCursor & (x == cursorCoordinates.x) & (y == cursorCoordinates.y)):
+                    print('\u2588', end = " ")
+                else:
+                    print(self.board[((x * rowsNumber) + y)].textValue(), end = " ")
         
         print()
         
