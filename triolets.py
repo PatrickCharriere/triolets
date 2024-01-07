@@ -1,69 +1,67 @@
+from Game import Game
+from Board import *
+import pygame
+fonts = pygame.font.get_fonts()
+print(len(fonts))
+for f in fonts:
+    print(f)
 
-from Constants import *
-from TokenBag import TokenBag
-from Board import Board, Coordinates
-from Player import Player
-from random import *
-import time
-import os
+#font = pygame.font.SysFont(fonts[0], 24)
 
-class Game:
-    currentPlayer = 0
-    tokenBag = TokenBag()
-    players = []
-    board = Board()
+WIDTH, HEIGHT = 1000, 1000
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+DARK_BLUE = (0,72,125)
+BLUE = (1,97,172)
+PURPLE = (108,71,150)
+GREEN = (60,155,138)
+LIGHT_BLUE = (46,64,221)
+ORANGE = (248,175,0)
+SILVER = (105,152,202)
 
-    def __init__(self, playersQty):
-        self.playersQty = playersQty
-        for i in range(playersQty):
-            self.players.append(Player(randomNames[i]))
+
+block_width, block_height = 50, 50
+
+def draw_block(color, position):
+    pygame.draw.rect(surface, color, position)
+    if False:
+        raanana
+
+def draw_block_border(color, position, width):
+    pygame.draw.rect(surface, color, position, width)
+
+def draw_board():
+    draw_block(DARK_BLUE, (0, 0, WIDTH, HEIGHT))    #background
     
-    def initialise(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("Bienvenue pour une nouvelle partie de Triolets.")
-        print("Ce jeu est configuré pour " + str(self.playersQty) + " joueurs, " + self.players[0].name + " et " + self.players[1].name + ".")
-        #self.tokenBag.print()
-        self.players[0].drawTokensFromTokenBag(self.tokenBag, 3)
-        self.players[1].drawTokensFromTokenBag(self.tokenBag, 3)
-        #self.board.print()
+    for y in range(rowsNumber):
+        for x in range(columnsNumber):
+            draw_block(BLUE, ((WIDTH - (block_width * columnsNumber))/2 + (x * block_width), (HEIGHT - (block_height * rowsNumber))/2 + (y * block_height), block_width, block_height))
+            draw_block_border(SILVER, ((WIDTH - (block_width * columnsNumber))/2 + (x * block_width), (HEIGHT - (block_height * rowsNumber))/2 + (y * block_height), block_width, block_height), 1)
+    
+    draw_block_border(BLACK, ((WIDTH - (block_width * columnsNumber))/2, (HEIGHT - (block_height * rowsNumber))/2, (columnsNumber * block_width), (rowsNumber * block_height)), 3)
+    pygame.display.flip()
 
-    def start(self):
-        print('Selection aléatoire du premier joueur...')
-        self.currentPlayer = self.selectRandomPlayerToStart()
-        print('Joueur ' + self.players[self.currentPlayer].name + ' commence.')
-        self.turn()
-        return
-    
-    def selectRandomPlayerToStart(self):
-        return randrange(0, self.playersQty)
-    
-    def turn(self):
-        self.players[self.currentPlayer].tokenStand.print()
-        while True:
-            try:
-                selection = int(input(self.players[self.currentPlayer].name + ' choisissez un pion a jouer parmi votre chevalet (1, 2 ou 3):'))
+surface = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Triolets")
+
+     
+
+def main():
+    run = True
+    game = Game(2)
+    game.initialise()
+    #game.start()
+    draw_board()
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
                 break
-            except:
-                print("Cette option n'est pas valide")
-
-        if selection != 1 & selection != 2 & selection != 3:
-            print("Cette option n'est pas valide")
-            
         
-        currentSelection = Coordinates(7, 7)
-        while True:
-            print("Selectionnez où positioner votre jeton sur le plateau")
-            self.board.print(currentSelection)
-            time.sleep(.5)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print("Selectionnez où positioner votre jeton sur le plateau")
-            self.board.print()
-            time.sleep(.5)
-            os.system('cls' if os.name == 'nt' else 'clear')
-            
         
+    
+    pygame.quit()
 
+if __name__ == "__main__":
+    main()
 
-game = Game(2)
-game.initialise()
-game.start()

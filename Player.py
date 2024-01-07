@@ -1,6 +1,5 @@
 from TokenStand import TokenStand
 from TokenBag import TokenBag
-from array import *
 
 class Player:
     tokenStand: TokenStand

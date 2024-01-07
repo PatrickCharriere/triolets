@@ -106,7 +106,7 @@ class Board:
                     print(self.board[((x * rowsNumber) + y)].textValue(), end = " ")
         
         print()
-        
+     
     def getSquareValue(self, coordinates: Coordinates):
         for i in range(len(self.board)):
             if ((self.board[i].coordinates.x == coordinates.x) & (self.board[i].coordinates.y == coordinates.y)):
